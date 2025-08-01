@@ -1,0 +1,303 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400);
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #111 url(https://codepen.io/images/classy_fabric.png) no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+}
+
+body {
+  padding: 20px;
+  text-align: center;
+}
+
+.timer-group {
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  width: 400px;
+  margin-top: 20px; /* Отступ сверху для мобильных устройств */
+}
+
+/* Основные стили для таймера */
+.timer {
+  border-radius: 50%;
+  height: 25vw; /* Высота в процентах от ширины контейнера */
+  overflow: hidden;
+  position: absolute;
+  width: 25vw; /* Ширина в процентах от ширины контейнера */
+}
+
+.timer:after {
+  background: #111 url(https://codepen.io/images/classy_fabric.png);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 20vw; /* Высота в процентах от ширины таймера */
+  left: 2.5vw;
+  position: absolute;
+  width: 20vw; /* Ширина в процентах от ширины таймера */
+  top: 2.5vw;
+}
+
+.timer .hand {
+  float: left;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 50%;
+}
+
+.timer .hand span {
+  border: 50px solid rgba(0, 255, 255, .4);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  display: block;
+  height: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: rotate(225deg);
+  width: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.timer .hand:first-child {
+  transform: rotate(180deg);
+}
+
+.timer .hand span {
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.timer .hand:first-child span {
+  animation-name: spin1;
+}
+
+.timer .hand:last-child span {
+  animation-name: spin2;
+}
+
+/* Стили для часовой стрелки */
+.timer.hour {
+  background: rgba(0, 0, 0, .3);
+  height: 100%;
+  left: 0;
+  width: 100%;
+  top: 0;
+  box-shadow: inset 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.timer.hour .hand span {
+  animation-duration: var(--hour-duration);
+  border-top-color: rgba(255, 0, 255, .6);
+  border-right-color: rgba(255, 0, 255, .6);
+  transition: transform 1s ease-in-out; /* Плавный переход между изменениями */
+  border-width: 200px;
+}
+
+.timer.hour:after {
+  height: 90%;
+  left: 5%;
+  width: 90%;
+  top: 5%;
+}
+
+.timer.minute {
+  background: rgba(0, 0, 0, .2);
+  height: 87.5%;
+  left: 6.25%;
+  width: 87.5%;
+  top: 6.25%;
+  box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+:root {
+  --hour-duration: 43200s;  /* 12 часов */
+  --minute-duration: 3600s; /* 1 час */
+  --second-duration: 60s;   /* 1 минута */
+  --hour-angle: 0deg;
+  --minute-angle: 0deg;
+  --second-angle: 0deg;
+}
+
+.timer.minute .hand span {
+  animation-duration: var(--minute-duration);
+  border-top-color: rgba(0, 255, 255, .6);
+  border-right-color: rgba(0, 255, 255, .6);
+    transition: transform 1s ease-in-out; /* Плавный переход между изменениями */
+  border-width: 175px; /* 43.75%; */
+}
+
+.timer.minute:after {
+  height: 88%;
+  left: 6%;
+  width: 88%;
+  top: 6%;
+}
+
+/* Стили для секундной стрелки */
+.timer.second {
+  background: rgba(0, 0, 0, .2);
+  height: 75%;
+  left: 12.5%;
+  width: 75%;
+  top: 12.5%;
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.timer.second .hand span {
+  animation-duration: var(--second-duration);
+  border-top-color: rgba(255, 255, 255, .15);
+  border-right-color: rgba(255, 255, 255, .15);
+  transition: transform 1s ease-in-out; /* Плавный переход между изменениями */
+  border-width: 150px; /* 37.5%; */
+}
+
+.timer.second:after {
+  height: 296px;
+  left: 2px;
+  width: 296px;
+  top: 2px;
+}
+
+.face {
+  background: rgba(0, 0, 0, .1);
+  border-radius: 50%;
+  height: 220px;
+  left: 90px;
+  padding: 85px 40px 0;
+  position: absolute;
+  width: 220px;
+  text-align: center;
+  top: 90px;
+}
+
+.face h2 {
+  font-weight: 300;
+  font-size: 24px;
+  margin: 70px 0 0; /* Отступы для заголовка */
+}
+
+.face p {
+  border-radius: 20px;
+  font-size: 60px;
+  font-weight: 400;
+  position: absolute;
+  top: 17px;
+  width: 260px;
+  left: -20px;
+}
+
+@keyframes spin1 {
+  0% {
+    transform: rotate(225deg);
+  }
+  50% {
+    transform: rotate(225deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+
+@keyframes spin2 {
+  0% {
+    transform: rotate(225deg);
+  }
+  50% {
+    transform: rotate(405deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+
+.event-list {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.event-time, .event-status, .event-name {
+  font-size: 18px;
+}
+
+/* Основные стили для контейнера формы */
+.time-form-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Расстояние между элементами */
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: fit-content;
+}
+
+/* Стили для метки */
+.time-form-container label {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* Стили для поля ввода времени */
+.time-form-container input[type="time"] {
+  padding: 5px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-size: 12px;
+  width: 77px;
+  transition: background-color 0.3s ease;
+}
+
+.time-form-container input[type="time"]:focus {
+  background: #333;
+  border-color: #666;
+  outline: none;
+}
+
+/* Стили для кнопки */
+.time-form-container button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background: #00bcd4;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.time-form-container button:hover {
+  background: #0097a7;
+}
+
+.time-form-container button:focus {
+  outline: none;
+}

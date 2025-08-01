@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание дня</title>
+    <link rel="shortcut icon" href="./img/clock.png" type="image/x-icon">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./media.css">
+
+</head>
+<body>
+    <h1>Расписание дня</h1>
+
+    <!-- Форма для установки времени начала дня -->
+    <div class="time-form-container">
+        <label for="startTimeInput">Начало дня:</label>
+        <input type="time" id="startTimeInput" value="08:00">
+    </div>
+
+    <div id="events" class="event-list">
+        <!-- События будут добавлены программно -->
+    </div>
+
+    <div class="timer-group">
+        <div class="timer hour">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+        </div>
+        <div class="timer minute">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+        </div>
+        <div class="timer second">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+        </div>
+        <div class="face">
+            <h2 id="eventName"></h2>
+            <p id="lazy"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
